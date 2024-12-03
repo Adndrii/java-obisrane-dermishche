@@ -1,0 +1,28 @@
+services:
+  mysql:
+    image: mysql:8.3.0
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: user_service
+      MYSQL_ROOT_PASSWORD: mysql
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+
+  postgres:
+    image: postgres:16.3
+    container_name: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: Forum
+      POSTGRES_USER: andrii
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - ./docker/postgresql/data:/var/lib/postgresql/data
+   
+
+networks:
+  microservices-network:
+    driver: bridge
